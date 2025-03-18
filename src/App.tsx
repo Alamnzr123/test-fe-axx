@@ -7,12 +7,16 @@ import { IoIosStarOutline } from "react-icons/io";
 
 interface inputElement {
   value: string;
+  login: string;
+  name: string;
+  description: string;
+  stargazers_count: string;
 }
 
 export default function Home() {
-  const inputName = React.useRef<inputElement>({
-    value: ""
-  });
+  const inputName = React.useRef<HTMLInputElement>(
+    document.createElement("input")
+  );
   const [search, setSearch] = React.useState("");
   const [maxData, setMaxData] = React.useState(0);
   const [getName, setGetName] = React.useState([]);
@@ -98,7 +102,7 @@ export default function Home() {
             </>
           ) : (
             <div className="mt-5 flex flex-col gap-1">
-              {getName.map((value: string, index) => {
+              {getName.map((value: inputElement, index) => {
                 return (
                   <div key={index} className="">
                     <button
@@ -118,7 +122,7 @@ export default function Home() {
                       </div>
                     </button>
                     {open === true && index === ind
-                      ? detail.map((val: string, idx) => {
+                      ? detail.map((val: inputElement, idx) => {
                         return (
                           <div className="border w-[500px] mt-2" key={idx}>
                             <button className="flex justify-between gap-3 w-full bg-slate-400">
